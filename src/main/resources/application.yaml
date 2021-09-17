@@ -1,0 +1,19 @@
+# 注意冒号后面一定要跟一个空格
+
+# 普通的key-value
+name: odas
+
+# 对象(注意锁进)
+student:
+  name: odas
+  age: 3
+# 对象还有一个行内写法
+teacher: {name: odas, age: 5}
+
+# 数组
+pets:
+  - cat
+  - dog
+  - pig
+# 数组的行内写法
+pets2: [cat, dog, pig]
