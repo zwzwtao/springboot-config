@@ -2,7 +2,9 @@ package com.odas.pojo;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.Email;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +20,12 @@ import java.util.Map;
 // <artifactId>spring-boot-configuration-processor</artifactId>
 // prefix里写的属性绑定该类，即通过yaml给实体类赋值，prefix里面不能用驼峰写法，必须全部小写
 @ConfigurationProperties(prefix = "person")
+// spring注解用来数据校验，必须先使用这个注解才能使用下面的校验注解
+// 数据校验不要和@Validated一起使用，因为毫无意义，既然写了校验，就说明赋值是交给别人了
+@Validated
 public class Person {
+    // message可以不自己定义用默认的
+    @Email(message = "邮箱格式错误")
     private String name;
     private Integer age;
     private Boolean happy;
