@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 public class Cat {
     @Value("Kitty")
     private String name;
+    // 注意这里@Value里面是一个string，没关系的，spring会自己转
     @Value("3")
     private Integer age;
 

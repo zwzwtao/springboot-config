@@ -1,12 +1,23 @@
 package com.odas.pojo;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+// 一个基本不用的方式，不过也能加载自定以的properties配置
+// 注意要把idea的fileEncoding改为utf-8
+// @ProperSource(value = "classpath:odas.properties")
+// 配置完了source，还必须要在类成员变量上面@Value("${name}")才能实际赋值，非常繁琐所以不推荐
+
 @Component
+// 这里@ConfigurationProperties可能会爆红，不过没关系，不用管
+// 如果不想看爆红在pom里导入
+// <artifactId>spring-boot-configuration-processor</artifactId>
+// prefix里写的属性绑定该类，即通过yaml给实体类赋值，prefix里面不能用驼峰写法，必须全部小写
+@ConfigurationProperties(prefix = "person")
 public class Person {
     private String name;
     private Integer age;

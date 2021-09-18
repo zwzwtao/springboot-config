@@ -3,7 +3,7 @@
 # 普通的key-value
 name: odas
 
-# 对象(注意锁进)
+# 对象(注意缩进)
 student:
   name: odas
   age: 3
@@ -17,3 +17,27 @@ pets:
   - pig
 # 数组的行内写法
 pets2: [cat, dog, pig]
+
+
+# 接下来用实际例子操作一遍，我们在pojo里定义了一个Person类，现在我们给他赋值
+# 可以使用${}来进行一些厉害的操作
+# 由于@ConfigurationProperties支持松散绑定，所以如果是以驼峰命名的变量
+# 比如: firstName，可以在yaml里使用first-name来赋值给firstName
+person:
+  name: odas${random.uuid}
+  age: 3
+  happy: true
+  # 如果birth用的是LocalDate, 那就要加上注解@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+  # 然后就能解析诸如"yyyy-MM-dd"这样的字符串了
+  birth: 2021/09/18
+  maps: {k1 : v1, k2 : v2}
+  lists:
+    - code
+    - game
+    - book
+  cat:
+    name: Kitty
+    age: 3
+
+# 举一反三: 这么看来我们只要写一个配置类，就能通过yaml实现全局配置了
+# 比如我们写一个配置包(package)，在里面专门写一些配置类，就能通过yaml实现参数赋值
